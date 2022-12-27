@@ -1,7 +1,7 @@
 import geopandas as gpd
 from sklearn.cluster import KMeans
 
-def spatial_resample_clusters (gdf, name, nfolds, random_state = None, **kwargs) :
+def spatial_kfold_clusters (gdf, name, nfolds, random_state = None, **kwargs) :
     
     """
     Perform a spatial clustering using KMeans on a GeoDataFrame with coordinates and assign each geo point to a fold 
@@ -55,7 +55,7 @@ def spatial_resample_clusters (gdf, name, nfolds, random_state = None, **kwargs)
     
     lon_lat_valid = lon_lat[[name, 'folds']]
     
-    # assign the clusters to the original gdf 
-    gdf_clustered = gdf.merge(lon_lat_valid, on= name, how='left')
+    # assign the folds-clusters to the original gdf 
+    gdf_kfold_clusters = gdf.merge(lon_lat_valid, on= name, how='left')
     
-    return gdf_clustered
+    return gdf_kfold_clusters
