@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.model_selection import LeaveOneGroupOut 
 
 
-def spatial_kfold_stats(X: Union[np.ndarray, pd.DataFrame, pd.Series], y: Union[np.ndarray, pd.Series, pd.DataFrame], group: Union[np.ndarray, pd.Series]):
+def spatial_kfold_stats(X: Union[np.ndarray, pd.DataFrame, pd.Series], y: Union[np.ndarray, pd.Series, pd.DataFrame], groups: Union[np.ndarray, pd.Series]):
     """
     Generate a DataFrame with the number of train and test samples in each split of a spatial resampling procedure.
     
@@ -30,7 +30,7 @@ def spatial_kfold_stats(X: Union[np.ndarray, pd.DataFrame, pd.Series], y: Union[
     # Initialize the LeaveOneGroupOut 
     spatial_kfold = LeaveOneGroupOut()
     
-    for idx, (train_index, test_index) in enumerate(spatial_kfold.split(X, y = None, groups=group)):
+    for idx, (train_index, test_index) in enumerate(spatial_kfold.split(X, y = None, groups=groups)):
         if isinstance(X, pd.DataFrame):
             X_train, X_test = X.loc[train_index], X.loc[test_index]
         elif isinstance(X, pd.Series):
