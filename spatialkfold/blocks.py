@@ -43,11 +43,7 @@ def create_grid ( gdf, width, height ):
     
     # Get the bounds of the points
     xmin, ymin, xmax, ymax = gdf.total_bounds
-
-    # Set the width and height of the grid cells in x and y
-    width = width
-    height = height
-
+    
     # Calculate the number of rows and columns in the grid
     cols = list(np.arange(xmin, xmax + width, width))
     rows = list(np.arange(ymin, ymax + height, height))
