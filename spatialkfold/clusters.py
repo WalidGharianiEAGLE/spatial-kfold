@@ -45,7 +45,7 @@ def spatial_kfold_clusters (gdf, name, nfolds, random_state = None, **kwargs) :
     lon_lat = gdf_sp.copy().drop(columns = name)
     
     for i in range(1, nfolds + 1):
-        kmeans = KMeans(n_clusters = i,  **kwargs)
+        kmeans = KMeans(n_clusters = i,  random_state = random_state, **kwargs)
         kmeans.fit(lon_lat)
 
     cluster_labels = kmeans.predict(lon_lat)
