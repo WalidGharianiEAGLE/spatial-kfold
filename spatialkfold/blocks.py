@@ -162,6 +162,3 @@ def spatial_kfold_blocks (gdf, gdf_blocks):
     gdf_kfold_blocks = gpd.overlay(gdf, gdf_blocks, how="intersection")
     
     return gdf_kfold_blocks
-
-
-
