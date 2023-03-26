@@ -17,7 +17,7 @@ setup(
     packages=["spatialkfold"],
     author="Walid Ghariani",
     author_email="walid11ghariani@gmail.com",
-    description=("spatial-kFold: A Python Package for Spatial Resampling Toward More Reliable Cross-Validation in Spatial Studies."),
+    description=("spatial-kfold: A Python Package for Spatial Resampling Toward More Reliable Cross-Validation in Spatial Studies."),
     long_description=README,
     license="MIT",
     keywords="cross-validation, machine-learning, GIS, spatial",
