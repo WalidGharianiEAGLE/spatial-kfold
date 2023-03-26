@@ -24,7 +24,7 @@ setup(
     url="https://github.com/WalidGharianiEAGLE/spatial-kfold",
 
     #packages=find_packages(),
-    package_data={'geopoz': ['./data/*.geojson']},
+    package_data={'spatialkfold': ['./data/*.geojson']},
     include_package_data=True,
 
     # Dependencies
