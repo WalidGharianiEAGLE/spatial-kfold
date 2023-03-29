@@ -60,7 +60,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="clusters_resampling.png" width="400" />
+  <img src="images/clusters_resampling.png" width="400" />
 </p>
 
 ## 2. Spatial blocks [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
@@ -109,12 +109,12 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="blocks_resampling.png" width="700" />
+  <img src="images/blocks_resampling.png" width="700" />
 </p>
 
 ## 3. Compare Random cross vlidation and Spatial cross validation [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
 
 <p align="center">
-  <img src="randomCV_spatialCV.png" width="800" />
+  <img src="images/randomCV_spatialCV.png" width="800" />
 </p>
 
