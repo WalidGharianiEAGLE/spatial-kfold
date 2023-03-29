@@ -11,8 +11,12 @@ spatial-kfold is a python library for performing spatial resampling to ensure mo
 
 spatial-kfold allow to conduct "Leave Region Out" using two spatial resampling techniques:
 
-* Spatial clustering with kmeans
-* Spatial blocks
+* 1. Spatial clustering with kmeans
+* 2. Spatial blocks
+    * Random blocks
+    * Continuous blocks 
+        * tb-lr : top-bottom, left-right
+        * bt-rl : bottom-top, right-left
 
 # Installation
 
