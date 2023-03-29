@@ -104,5 +104,5 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="blocks_resampling.png" width="400" />
+  <img src="blocks_resampling.png" width="700" />
 </p>
