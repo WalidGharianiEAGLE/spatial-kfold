@@ -112,4 +112,7 @@ plt.show()
 
 ## 3. Compare Random cross vlidation and Spatial cross validation
 
+<p align="center">
+  <img src="randomCV_spatialCV.png" width="700" />
+</p>
 
