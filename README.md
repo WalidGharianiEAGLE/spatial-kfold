@@ -1,4 +1,7 @@
 # spatial-kfold
+[![pypi](https://img.shields.io/pypi/v/spatial-kfold.svg)](https://pypi.org/project/spatial-kfold/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 spatial resampling for more robust cross validation in spatial studies
 
 spatial-kfold is a python library for performing spatial resampling to ensure more robust cross-validation in spatial studies. It offers spatial clustering and block resampling technique with  user-friendly parameters to customize the resampling. It enables users to conduct a "Leave Region Out" cross-validation, which can be useful for evaluating the model's generalization to new locations as well as improving the reliability of [feature selection](https://doi.org/10.1016/j.ecolmodel.2019.108815) and [hyperparameter tuning](https://doi.org/10.1016/j.ecolmodel.2019.06.002) in spatial studies
@@ -27,8 +30,6 @@ pip install spatial-kfold
 from spatialkfold import load_data
 from spatialkfold import spatial_kfold_clusters 
 from spatialkfold import spatial_blocks , spatial_kfold_blocks
-from spatialkfold.plotting import spatial_kfold_plot
-from spatialkfold.stats import spatial_kfold_stats
 
 import matplotlib.pyplot as plt
 from matplotlib import cm
