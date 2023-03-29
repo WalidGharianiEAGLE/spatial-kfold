@@ -9,7 +9,7 @@ spatial-kfold is a python library for performing spatial resampling to ensure mo
 spatial-kfold allow to conduct "Leave Region Out" using two spatial resampling techniques:
 
 * Spatial clustering with kmeans
-* spatial blocks
+* Spatial blocks
 
 # Installation
 
@@ -21,6 +21,7 @@ pip install spatial-kfold
 
 # Example 
 
+## 1. Spatial clustering with kmeans
 ```python
 from spatialkfold import load_data
 from spatialkfold import spatial_kfold_clusters 
@@ -30,17 +31,9 @@ from spatialkfold.stats import spatial_kfold_stats
 
 import matplotlib.pyplot as plt
 from matplotlib import cm
-from matplotlib.colors import colors, ListedColormap, LinearSegmentedColormap
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-import numpy as np
-import pandas as pd
-import seaborn as sns
-
-from sklearn import preprocessing
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import KFold 
-from sklearn.model_selection import LeaveOneGroupOut 
-from sklearn.model_selection import cross_validate
+import matplotlib.colors as colors
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 # load ames data
 ames = load_data()
@@ -68,6 +61,7 @@ plt.show()
   <img src="clusters_resampling.png" width="400" />
 </p>
 
+## 2. Spatial blocks
 
 ```python
 
@@ -83,6 +77,7 @@ ames_res_rnd_blk = spatial_kfold_blocks (ames_prj, ames_rnd_blocks)
 
 # plot the resampled blocks
 fig, ax = plt.subplots(1,2 , figsize=(10, 6)) 
+
 # plot 1
 ames_rnd_blocks.plot(column = 'folds',cmap = color_ramp, ax = ax[0] ,lw=0.7, legend = False)
 ames_prj.plot(ax=ax[0],  markersize = 1, color = 'r')
@@ -91,14 +86,22 @@ ax[0].set_title('Random Blocks Folds')
 # plot 2
 ames_rnd_blocks.plot(facecolor="none",edgecolor='grey', ax = ax[1] ,lw=0.7, legend = False)
 ames_res_rnd_blk.plot(column = 'folds', cmap = color_ramp,legend = False, ax = ax[1], markersize = 3)
-ax[1].set_title('Spatially Resampled\nRandom Blocks')
+ax[1].set_title('Spatially Resampled\nrandom blocks')
 
-# add colorbar to plot 2
-divider = make_axes_locatable(ax[1])
-cax = divider.append_axes("right", size="5%", pad=0.1)
-sm = plt.cm.ScalarMappable(cmap=color_ramp)
-sm.set_array([])
-plt.colorbar(sm, ax=ax[1], cax=cax)
+
+im1 = ax[1].scatter(ames_res_rnd_blk.geometry.x , ames_res_rnd_blk.geometry.y, c=ames_res_rnd_blk['folds'],
+                 cmap=color_ramp, s=5)
+
+axins1 = inset_axes(
+    ax[1],
+    width="5%",  # width: 5% of parent_bbox width
+    height="50%",  # height: 50%
+    loc="lower left",
+    bbox_to_anchor=(1.05, 0, 1, 2),
+    bbox_transform=ax[1].transAxes,
+    borderpad=0
+)
+fig.colorbar(im1, cax=axins1,  ticks= range(1,11))
 
 plt.show()
 ```
@@ -106,3 +109,7 @@ plt.show()
 <p align="center">
   <img src="blocks_resampling.png" width="700" />
 </p>
+
+## 3. Compare Random cross vlidation and Spatial cross validation
+
+
