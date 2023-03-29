@@ -21,7 +21,8 @@ pip install spatial-kfold
 
 # Example 
 
-## 1. Spatial clustering with kmeans
+## 1. Spatial clustering with kmeans [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
+
 ```python
 from spatialkfold import load_data
 from spatialkfold import spatial_kfold_clusters 
@@ -61,11 +62,11 @@ plt.show()
   <img src="clusters_resampling.png" width="400" />
 </p>
 
-## 2. Spatial blocks
+## 2. Spatial blocks [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
 
 ```python
 
-# 2.1 spatial resampled random blocks
+# 2.1 spatial resampled random blocks  
 
 # create 10 random blocks 
 ames_rnd_blocks = spatial_blocks(ames_prj, width = 1500, height = 1500, 
@@ -110,9 +111,9 @@ plt.show()
   <img src="blocks_resampling.png" width="700" />
 </p>
 
-## 3. Compare Random cross vlidation and Spatial cross validation
+## 3. Compare Random cross vlidation and Spatial cross validation [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
 
 <p align="center">
-  <img src="randomCV_spatialCV.png" width="700" />
+  <img src="randomCV_spatialCV.png" width="800" />
 </p>
 
