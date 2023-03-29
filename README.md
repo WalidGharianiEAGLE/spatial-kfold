@@ -118,3 +118,21 @@ plt.show()
   <img src="images/randomCV_spatialCV.png" width="800" />
 </p>
 
+# Resources
+
+A list of tutorials and resources mainly in R explaining the importance of sptial resampling and spatial cross validation
+
+*  [Hanna Meyer: "Machine-learning based modelling of spatial and spatio-temporal data"](https://www.youtube.com/watch?v=QGjdS1igq78&t=1271s)
+* [Jannes Münchow: "The importance of spatial cross-validation in predictive modeling"](https://www.youtube.com/watch?v=1rSoiSb7xbw&t=649s)
+* [Julia Silge: Spatial resampling for more reliable model evaluation with geographic data ](https://www.youtube.com/watch?v=wVrcw_ek3a4&t=904s)
+
+
+# Bibliography
+
+Meyer, H., Reudenbach, C., Wöllauer, S., Nauss, T. (2019): Importance of spatial predictor variable selection in machine learning applications - Moving from data reproduction to spatial prediction. Ecological Modelling. 411. https://doi.org/10.1016/j.ecolmodel.2019.108815
+
+Schratz, Patrick, et al. "Hyperparameter tuning and performance assessment of statistical and machine-learning algorithms using spatial data." Ecological Modelling 406 (2019): 109-120. https://doi.org/10.1016/j.ecolmodel.2019.06.002
+
+Schratz, Patrick, et al. "mlr3spatiotempcv: Spatiotemporal resampling methods for machine learning in R." arXiv preprint arXiv:2110.12674 (2021). https://arxiv.org/abs/2110.12674
+
+Valavi, Roozbeh, et al. "blockCV: An r package for generating spatially or environmentally separated folds for k-fold cross-validation of species distribution models." Biorxiv (2018): 357798. https://doi.org/10.1101/357798 
