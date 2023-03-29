@@ -120,7 +120,7 @@ plt.show()
 
 # Resources
 
-A list of tutorials and resources mainly in R explaining the importance of sptial resampling and spatial cross validation
+A list of tutorials and resources mainly in R explaining the importance of saptial resampling and spatial cross validation
 
 *  [Hanna Meyer: "Machine-learning based modelling of spatial and spatio-temporal data"](https://www.youtube.com/watch?v=QGjdS1igq78&t=1271s)
 * [Jannes Münchow: "The importance of spatial cross-validation in predictive modeling"](https://www.youtube.com/watch?v=1rSoiSb7xbw&t=649s)
