@@ -19,7 +19,7 @@ setup(
     author_email="walid11ghariani@gmail.com",
     description=("spatial-kfold: A Python Package for Spatial Resampling Toward More Reliable Cross-Validation in Spatial Studies."),
     long_description=README,
-    license="MIT",
+    license="GPL-3.0",
     keywords="cross-validation, machine-learning, GIS, spatial",
     url="https://github.com/WalidGharianiEAGLE/spatial-kfold",
 
