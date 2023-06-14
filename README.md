@@ -132,6 +132,22 @@ A list of tutorials and resources mainly in R explaining the importance of sapti
 * [Jannes Münchow: "The importance of spatial cross-validation in predictive modeling"](https://www.youtube.com/watch?v=1rSoiSb7xbw&t=649s)
 * [Julia Silge: Spatial resampling for more reliable model evaluation with geographic data ](https://www.youtube.com/watch?v=wVrcw_ek3a4&t=904s)
 
+# Credits
+
+This package was inspired by the following R packages.
+
+* [CAST](https://github.com/HannaMeyer/CAST/)
+* [spatialsample](https://github.com/tidymodels/spatialsample/) 
+
+# Dependencies
+
+This project relies on the following dependencies:
+* [pandas](https://pandas.pydata.org)
+* [numpy](https://numpy.org)
+* [geopandas](https://geopandas.org)
+* [shapely](https://shapely.readthedocs.io)
+* [matplotlib](https://matplotlib.org)
+* [scikit-learn](https://scikit-learn.org)
 
 # Bibliography
 
