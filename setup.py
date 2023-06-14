@@ -13,7 +13,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='spatial-kfold',
-    version="0.0.01",
+    version="0.0.02",
     packages=["spatialkfold"],
     author="Walid Ghariani",
     author_email="walid11ghariani@gmail.com",
@@ -40,6 +40,8 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
     ],
 
     # testing
