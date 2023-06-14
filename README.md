@@ -26,14 +26,6 @@ spatial-kfold can be installed from [PyPI](https://pypi.org/project/spatial-kfol
 pip install spatial-kfold
 ```
 
-# Resources
-
-A list of tutorials and resources mainly in R explaining the importance of saptial resampling and spatial cross validation
-
-*  [Hanna Meyer: "Machine-learning based modelling of spatial and spatio-temporal data"](https://www.youtube.com/watch?v=QGjdS1igq78&t=1271s)
-* [Jannes Münchow: "The importance of spatial cross-validation in predictive modeling"](https://www.youtube.com/watch?v=1rSoiSb7xbw&t=649s)
-* [Julia Silge: Spatial resampling for more reliable model evaluation with geographic data ](https://www.youtube.com/watch?v=wVrcw_ek3a4&t=904s)
-
 # Credits
 
 This package was inspired by the following R packages.
