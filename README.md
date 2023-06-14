@@ -133,7 +133,7 @@ A list of tutorials and resources mainly in R explaining the importance of sapti
 
 # Credits
 
-This package was inspired by the following R packages.
+This package was inspired by the following R packages:
 
 * [CAST](https://github.com/HannaMeyer/CAST/)
 * [spatialsample](https://github.com/tidymodels/spatialsample/) 
