@@ -31,10 +31,11 @@ pip install spatial-kfold
 ## 1. Spatial clustering with kmeans [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
 
 ```python
-from spatialkfold import load_data
-from spatialkfold import spatial_kfold_clusters 
-from spatialkfold import spatial_blocks , spatial_kfold_blocks
+from spatialkfold.blocks import spatial_blocks 
+from spatialkfold.datasets import load_ames
+from spatialkfold.clusters import spatial_kfold_clusters 
 
+import geopandas as gpd
 import matplotlib.pyplot as plt
 from matplotlib import cm
 import matplotlib.colors as colors
@@ -79,7 +80,7 @@ ames_rnd_blocks = spatial_blocks(ames_prj, width = 1500, height = 1500,
                                  random_state = 135)
 
 # resample the ames data with the prepared blocks 
-ames_res_rnd_blk = spatial_kfold_blocks (ames_prj, ames_rnd_blocks)
+ames_res_rnd_blk = gpd.overlay (ames_prj, ames_rnd_blocks)
 
 # plot the resampled blocks
 fig, ax = plt.subplots(1,2 , figsize=(10, 6)) 
