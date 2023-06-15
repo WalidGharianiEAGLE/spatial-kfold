@@ -142,6 +142,7 @@ This project relies on the following dependencies:
 
 
 # Citation
+
 If you use My Package in your research or work, please cite it using the following BibTeX entry:
 
 - MLA Style:
@@ -151,6 +152,7 @@ Ghariani, Walid. "spatial-kfold: A Python Package for Spatial Resampling Toward 
 ```
 - BibTex Style:
 
+```
 @Misc{spatial-kfold,
 author = {Walid Ghariani},
 title = {spatial-kfold: A Python Package for Spatial Resampling Toward More Reliable Cross-Validation in Spatial Studies},
@@ -158,7 +160,7 @@ howpublished = {GitHub},
 year = {2023},
 url = {https://github.com/WalidGharianiEAGLE/spatial-kfold}
 }
-
+```
 # Resources
 
 A list of tutorials and resources mainly in R explaining the importance of saptial resampling and spatial cross validation
