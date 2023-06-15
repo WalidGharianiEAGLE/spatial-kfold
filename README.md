@@ -143,7 +143,7 @@ This project relies on the following dependencies:
 
 # Citation
 
-If you use My Package in your research or work, please cite it using the following BibTeX entry:
+If you use My Package in your research or work, please cite it using the following entries:
 
 - MLA Style:
 
