@@ -123,14 +123,6 @@ plt.show()
   <img src="images/randomCV_spatialCV.png" width="800" />
 </p>
 
-# Resources
-
-A list of tutorials and resources mainly in R explaining the importance of saptial resampling and spatial cross validation
-
-*  [Hanna Meyer: "Machine-learning based modelling of spatial and spatio-temporal data"](https://www.youtube.com/watch?v=QGjdS1igq78&t=1271s)
-* [Jannes Münchow: "The importance of spatial cross-validation in predictive modeling"](https://www.youtube.com/watch?v=1rSoiSb7xbw&t=649s)
-* [Julia Silge: Spatial resampling for more reliable model evaluation with geographic data ](https://www.youtube.com/watch?v=wVrcw_ek3a4&t=904s)
-
 # Credits
 
 This package was inspired by the following R packages:
@@ -147,6 +139,33 @@ This project relies on the following dependencies:
 * [shapely](https://shapely.readthedocs.io)
 * [matplotlib](https://matplotlib.org)
 * [scikit-learn](https://scikit-learn.org)
+
+
+# Citation
+If you use My Package in your research or work, please cite it using the following BibTeX entry:
+
+- MLA Style:
+
+```
+Ghariani, Walid. "spatial-kfold: A Python Package for Spatial Resampling Toward More Reliable Cross-Validation in Spatial Studies." 2023. GitHub, https://github.com/WalidGharianiEAGLE/spatial-kfold
+```
+- BibTex Style:
+
+@Misc{spatial-kfold,
+author = {Walid Ghariani},
+title = {spatial-kfold: A Python Package for Spatial Resampling Toward More Reliable Cross-Validation in Spatial Studies},
+howpublished = {GitHub},
+year = {2023},
+url = {https://github.com/WalidGharianiEAGLE/spatial-kfold}
+}
+
+# Resources
+
+A list of tutorials and resources mainly in R explaining the importance of saptial resampling and spatial cross validation
+
+*  [Hanna Meyer: "Machine-learning based modelling of spatial and spatio-temporal data"](https://www.youtube.com/watch?v=QGjdS1igq78&t=1271s)
+* [Jannes Münchow: "The importance of spatial cross-validation in predictive modeling"](https://www.youtube.com/watch?v=1rSoiSb7xbw&t=649s)
+* [Julia Silge: Spatial resampling for more reliable model evaluation with geographic data ](https://www.youtube.com/watch?v=wVrcw_ek3a4&t=904s)
 
 # Bibliography
 
