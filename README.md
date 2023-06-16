@@ -43,7 +43,7 @@ from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 # load ames data
-ames = load_data()
+ames = load_ames()
 ames_prj = ames.copy().to_crs(ames.estimate_utm_crs())
 ames_prj['id'] = range(len(ames_prj))
 
