@@ -43,11 +43,7 @@ def create_grid (gdf, width, height):
     rows = list(np.arange(ymin, ymax + height, height))
 
     # Create the grid polygons
-    polygons = []
-    for x in cols[:-1]:
-        for y in rows[:-1]:
-            polygons.append(box(x, y, x + width, y + height))
-
+    polygons =  [box(x, y, x + width, y + height) for x in cols[:-1] for y in rows[:-1]]
     # Create a geodataframe with the grid polygons and add crs
     grid = gpd.GeoDataFrame({'geometry':polygons})
     grid = grid.set_crs(gdf.crs)
