@@ -1,5 +1,5 @@
 # spatial-kfold
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/gpl-3-0/)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![pypi](https://img.shields.io/pypi/v/spatial-kfold.svg)](https://pypi.org/project/spatial-kfold/)
 [![Downloads](https://static.pepy.tech/badge/spatial-kfold)](https://pepy.tech/project/spatial-kfold)
 
