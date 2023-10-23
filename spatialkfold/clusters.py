@@ -2,7 +2,6 @@ import geopandas as gpd
 from sklearn.cluster import KMeans
 
 def spatial_kfold_clusters (gdf, name, nfolds, random_state = None, **kwargs) :
-    
     """
     Perform a spatial clustering using KMeans on a GeoDataFrame with coordinates and assign each geo point to a fold 
     
@@ -14,7 +13,8 @@ def spatial_kfold_clusters (gdf, name, nfolds, random_state = None, **kwargs) :
         name of the column that identify each unique geospatial point. eg: station_id or city_code 
     nfolds : int
         The number of clusters/folds to assign for each geospatial point.
-    kwargs : set of arguments tp provide for kmeans from sklean api : https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html
+    kwargs : set of arguments tp provide for kmeans from sklean api : 
+            https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html
             eg: algorithm {“lloyd”, “elkan”, “auto”, “full”}, default=”lloyd”
 
     random_state : int, optional
@@ -24,7 +24,6 @@ def spatial_kfold_clusters (gdf, name, nfolds, random_state = None, **kwargs) :
     -------
     GeoDataFrame
         A GeoDataFrame containing with a 'groups' column.
- 
     """
     # Check that the input is a GeoDataFrame
     if not isinstance(gdf, gpd.GeoDataFrame):
@@ -47,14 +46,11 @@ def spatial_kfold_clusters (gdf, name, nfolds, random_state = None, **kwargs) :
     for i in range(1, nfolds + 1):
         kmeans = KMeans(n_clusters = i,  random_state = random_state, **kwargs)
         kmeans.fit(lon_lat)
-
     cluster_labels = kmeans.predict(lon_lat)
 
     lon_lat['folds'] = cluster_labels + 1
     lon_lat[name] = gdf_sp[name]
-    
     lon_lat_valid = lon_lat[[name, 'folds']]
-    
     # assign the folds-clusters to the original gdf 
     gdf_kfold_clusters = gdf.merge(lon_lat_valid, on= name, how='left')
     

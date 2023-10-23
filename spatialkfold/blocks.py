@@ -1,12 +1,10 @@
-from shapely.geometry import Polygon
-from shapely.geometry import box
-import geopandas as gpd
-import pandas as pd
 import numpy as np
+import pandas as pd
+import geopandas as gpd
+from shapely.geometry import box
 
 
-def create_grid ( gdf, width, height ):
-
+def create_grid (gdf, width, height):
     """
     Create a grid of polygons with a specified width and height based on the bounds of a provided GeoDataFrame.
     
@@ -27,15 +25,11 @@ def create_grid ( gdf, width, height ):
     Source: Code for creating a grid was adapted from the solution provided by user "Mativane" in the following gis.stackexchange thread:
     https://gis.stackexchange.com/questions/269243/creating-polygon-grid-using-geopandas
     """
-    # Check that the input is a GeoDataFrame
     if not isinstance(gdf, gpd.GeoDataFrame):
-        raise TypeError('Input must be a GeoDataFrame')
-    
-    # Check the crs of the GeoDataFrame
+        raise TypeError('Input must be a GeoDataFrame')    
     if (gdf.crs == None):
-        raise AttributeError('The passed GeoDataFrame has no CRS. Use `to_crs()` to reproject one of the input geometries.')
-     
-    # Check that the width and height are positive numbers
+        raise AttributeError('The passed GeoDataFrame has no CRS. Use `to_crs()` to reproject one of the input geometries.')    
+    
     if not (isinstance(width, (int, float)) and width > 0):
         raise ValueError('Width must be a positive number')
     if not (isinstance(height, (int, float)) and height > 0):
@@ -61,8 +55,7 @@ def create_grid ( gdf, width, height ):
     return grid 
 
 
-def spatial_blocks (gdf , width, height, nfolds, method= 'random', orientation= 'tb-lr' ,random_state = None) :   
-    
+def spatial_blocks (gdf, width, height, nfolds, method='random', orientation= 'tb-lr', random_state=None) :       
     """
     Create a grid of polygons based on the intersection with a provided GeoDataFrame and assign each polygon to a number of fold
     
@@ -87,8 +80,7 @@ def spatial_blocks (gdf , width, height, nfolds, method= 'random', orientation= 
     Returns
     -------
     GeoDataFrame
-        A GeoDataFrame containing the blocks, with a 'folds' column indicating the block number for each polygon.
- 
+        A GeoDataFrame containing the blocks, with a 'folds' column indicating the block number for each polygon. 
     """
     if (method != 'random' and method != 'continuous'):
         raise ValueError(f"Invalid method {method}. Specify either 'random' or 'continuous'.")

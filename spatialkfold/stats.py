@@ -1,10 +1,13 @@
 from typing import Union
-import pandas as pd
+
 import numpy as np
+import pandas as pd
 from sklearn.model_selection import LeaveOneGroupOut 
 
 
-def spatial_kfold_stats(X: Union[np.ndarray, pd.DataFrame, pd.Series], y: Union[np.ndarray, pd.Series, pd.DataFrame], groups: Union[np.ndarray, pd.Series]):
+def spatial_kfold_stats(X: Union[np.ndarray, pd.DataFrame, pd.Series], 
+                        y: Union[np.ndarray, pd.Series, pd.DataFrame], 
+                        groups: Union[np.ndarray, pd.Series]):
     """
     Generate a DataFrame with the number of train and test samples in each split of a spatial resampling procedure.
     
@@ -27,7 +30,6 @@ def spatial_kfold_stats(X: Union[np.ndarray, pd.DataFrame, pd.Series], y: Union[
         https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.LeaveOneGroupOut.html
     """
     df_list = {'split': [], 'train': [], 'test': []}
-    # Initialize the LeaveOneGroupOut 
     spatial_kfold = LeaveOneGroupOut()
     
     for idx, (train_index, test_index) in enumerate(spatial_kfold.split(X, y = None, groups=groups)):
@@ -36,11 +38,10 @@ def spatial_kfold_stats(X: Union[np.ndarray, pd.DataFrame, pd.Series], y: Union[
         elif isinstance(X, pd.Series):
             X_train, X_test = X.loc[train_index], X.loc[test_index]
         else:
-            X_train, X_test = X[train_index], X[test_index]
-        
+            X_train, X_test = X[train_index], X[test_index]          
         df_list['split'].append(idx+1)
         df_list['train'].append(len(X_train))
         df_list['test'].append(len(X_test))
-        
         kfold_splits = pd.DataFrame(df_list)
+
     return kfold_splits
