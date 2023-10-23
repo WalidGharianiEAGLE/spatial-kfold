@@ -2,14 +2,14 @@
 
 spatial-kfold: A Python Package for Spatial Resampling Toward More Reliable Cross-Validation in Spatial Studies.
 
-spatial-kfold is a python library for performing spatial resampling to ensure more robust cross-validation in spatial studies. It offers spatial clustering and block resampling technique with  user-friendly parameters to customize the resampling. It enables users to conduct a "Leave Region Out" cross-validation, which can be useful for evaluating the model's generalization to new locations as well as improving the reliability of [feature selection](https://doi.org/10.1016/j.ecolmodel.2019.108815) and [hyperparameter tuning](https://doi.org/10.1016/j.ecolmodel.2019.06.002) in spatial studies
+spatial-kfold is a python library for performing spatial resampling to ensure more robust cross-validation in spatial studies. It offers spatial clustering and block resampling technique with user-friendly parameters to customize the resampling. It enables users to conduct a "Leave Region Out" cross-validation, which can be useful for evaluating the model's generalization to new locations as well as improving the reliability of [feature selection](https://doi.org/10.1016/j.ecolmodel.2019.108815) and [hyperparameter tuning](https://doi.org/10.1016/j.ecolmodel.2019.06.002) in spatial studies
 
 
 Spatial-kfold can be integrated easily with scikit-learn's [LeaveOneGroupOut](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.LeaveOneGroupOut.html) cross-validation technique. This integration enables you to further leverage the resampled spatial data for performing feature selection and hyperparameter tuning.
 
 # Main Features
 
-spatial-kfold allow to conduct "Leave Region Out" using two spatial resampling techniques:
+spatial-kfold allow conducting "Leave Region Out" using two spatial resampling techniques:
 
 * 1. Spatial clustering with kmeans
 * 2. Spatial blocks
@@ -31,10 +31,6 @@ pip install spatial-kfold
 ## 1. Spatial clustering with kmeans [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
 
 ```python
-from spatialkfold.blocks import spatial_blocks 
-from spatialkfold.datasets import load_ames
-from spatialkfold.clusters import spatial_kfold_clusters 
-
 import geopandas as gpd
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -42,7 +38,11 @@ import matplotlib.colors as colors
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
-# load ames data
+from spatialkfold.blocks import spatial_blocks 
+from spatialkfold.datasets import load_ames
+from spatialkfold.clusters import spatial_kfold_clusters 
+
+# Load ames data
 ames = load_ames()
 ames_prj = ames.copy().to_crs(ames.estimate_utm_crs())
 ames_prj['id'] = range(len(ames_prj))
@@ -59,7 +59,7 @@ color_ramp = ListedColormap(cols)
 
 
 fig, ax = plt.subplots(1,1 , figsize=(9, 4)) 
-ames_clusters.plot(column = 'folds', ax = ax, cmap = color_ramp, legend = True)
+ames_clusters.plot(column='folds', ax=ax, cmap= color_ramp, legend=True)
 ax.set_title('Spatially Clustered Folds')
 plt.show()
 ```
@@ -75,9 +75,9 @@ plt.show()
 # 2.1 spatial resampled random blocks  
 
 # create 10 random blocks 
-ames_rnd_blocks = spatial_blocks(ames_prj, width = 1500, height = 1500, 
-                                 method = 'random', nfolds = 10, 
-                                 random_state = 135)
+ames_rnd_blocks = spatial_blocks(gdf=ames_prj, width=1500, height=1500, 
+                                 method='random', nfolds=10, 
+                                 random_state=135)
 
 # resample the ames data with the prepared blocks 
 ames_res_rnd_blk = gpd.overlay (ames_prj, ames_rnd_blocks)
@@ -86,18 +86,17 @@ ames_res_rnd_blk = gpd.overlay (ames_prj, ames_rnd_blocks)
 fig, ax = plt.subplots(1,2 , figsize=(10, 6)) 
 
 # plot 1
-ames_rnd_blocks.plot(column = 'folds',cmap = color_ramp, ax = ax[0] ,lw=0.7, legend = False)
+ames_rnd_blocks.plot(column='folds',cmap=color_ramp, ax=ax[0] ,lw=0.7, legend=False)
 ames_prj.plot(ax=ax[0],  markersize = 1, color = 'r')
 ax[0].set_title('Random Blocks Folds')
 
 # plot 2
-ames_rnd_blocks.plot(facecolor="none",edgecolor='grey', ax = ax[1] ,lw=0.7, legend = False)
-ames_res_rnd_blk.plot(column = 'folds', cmap = color_ramp,legend = False, ax = ax[1], markersize = 3)
+ames_rnd_blocks.plot(facecolor="none",edgecolor='grey', ax=ax[1] ,lw=0.7, legend=False)
+ames_res_rnd_blk.plot(column='folds', cmap=color_ramp, legend=False, ax=ax[1], markersize=3)
 ax[1].set_title('Spatially Resampled\nrandom blocks')
 
 
-im1 = ax[1].scatter(ames_res_rnd_blk.geometry.x , ames_res_rnd_blk.geometry.y, c=ames_res_rnd_blk['folds'],
-                 cmap=color_ramp, s=5)
+im1 = ax[1].scatter(ames_res_rnd_blk.geometry.x , ames_res_rnd_blk.geometry.y, c=ames_res_rnd_blk['folds'], cmap=color_ramp, s=5)
 
 axins1 = inset_axes(
     ax[1],
@@ -163,7 +162,7 @@ url = {https://github.com/WalidGharianiEAGLE/spatial-kfold}
 ```
 # Resources
 
-A list of tutorials and resources mainly in R explaining the importance of saptial resampling and spatial cross validation
+A list of tutorials and resources mainly in R explaining the importance of spatial resampling and spatial cross validation
 
 *  [Hanna Meyer: "Machine-learning based modelling of spatial and spatio-temporal data"](https://www.youtube.com/watch?v=QGjdS1igq78&t=1271s)
 * [Jannes Münchow: "The importance of spatial cross-validation in predictive modeling"](https://www.youtube.com/watch?v=1rSoiSb7xbw&t=649s)
