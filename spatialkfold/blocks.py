@@ -4,7 +4,7 @@ import geopandas as gpd
 from shapely.geometry import box
 
 
-def create_grid (gdf, width, height):
+def create_grid(gdf, width, height):
     """
     Create a grid of polygons with a specified width and height based on the bounds of a provided GeoDataFrame.
     
@@ -51,7 +51,7 @@ def create_grid (gdf, width, height):
     return grid 
 
 
-def spatial_blocks (gdf, width, height, nfolds, method='random', orientation= 'tb-lr', random_state=None) :       
+def spatial_blocks(gdf, width, height, nfolds, method='random', orientation= 'tb-lr', random_state=None) :       
     """
     Create a grid of polygons based on the intersection with a provided GeoDataFrame and assign each polygon to a number of fold
     
@@ -84,7 +84,7 @@ def spatial_blocks (gdf, width, height, nfolds, method='random', orientation= 't
         raise ValueError(f"Invalid orientation {orientation}. Specify either 'left_right' or 'right_left'.By default the orientation is left_right.")
       
     # create GeoDataFrame containing the grid of polygons 
-    grids = create_grid ( gdf, width, height)    
+    grids = create_grid(gdf, width, height)    
     
     in_grids = grids.sjoin(gdf, how='inner').drop_duplicates('geometry')
     # keep only geometry column
@@ -102,10 +102,7 @@ def spatial_blocks (gdf, width, height, nfolds, method='random', orientation= 't
     
     # Split the data into a certain number of blocks
     split_blocks = np.array_split(sp_blocks, nfolds) 
-    blocks_list = []
-    for i, arr in enumerate(split_blocks):
-        arr['folds'] = i +1
-        blocks_list.append(arr)
+    blocks_list = [arr.assign(folds=i) for i, arr in enumerate(split_blocks, start=1)]
     
     # Set as Create a geodataframe
     blocks_folds_gdf = gpd.GeoDataFrame(pd.concat(blocks_list))
