@@ -13,11 +13,11 @@ def spatial_kfold_stats(X: Union[np.ndarray, pd.DataFrame, pd.Series],
     
     Parameters
     ----------
-    X : pandas DataFrame
+    X : np.ndarray or pd.DataFrame or pd.Series
         The feature data.
-    y : pd.DataFrame or pandas Series
+    y : np.ndarray or pd.Series or pd.DataFrame
         The target values.
-    group : np.ndarray, pd.Series
+    group : np.ndarray or pd.Series
        values in the column in X that defines the spatially resmapled groups.
     
     Returns
@@ -25,7 +25,8 @@ def spatial_kfold_stats(X: Union[np.ndarray, pd.DataFrame, pd.Series],
     pandas DataFrame
         A DataFrame with the number of train and test samples in each split of the spatial resampling procedure.
     
-    This function uses LeaveOneGroupOut from the scikit-learn documentation to ensure a leave-location-out” (LLO) procedure over a predifined group of folds: 
+    This function uses LeaveOneGroupOut from the scikit-learn documentation to ensure a leave-location-out” (LLO) procedure 
+    over a predifined group of folds: 
      >> Each Group of clustered, blocked or user defined locations are used during the testing
         https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.LeaveOneGroupOut.html
     """

@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import LeaveOneGroupOut 
 
 
-def spatial_kfold_plot (X:Union[np.ndarray, pd.DataFrame, pd.Series], 
-                        geometry:Union[pd.Series, pd.DataFrame], 
-                        groups: Union[np.ndarray, pd.Series], fold_num:int, 
+def spatial_kfold_plot(X: Union[np.ndarray, pd.DataFrame, pd.Series], 
+                        geometry: Union[pd.Series, pd.DataFrame], 
+                        groups: Union[np.ndarray, pd.Series], fold_num: int, 
                         ax=None, **kwargs):
     """
     Generate a plot differentiating between the train and test data during the cross validation for a specific fold

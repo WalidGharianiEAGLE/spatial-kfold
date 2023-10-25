@@ -3,7 +3,7 @@ from sklearn.cluster import KMeans
 from sklearn.cluster import BisectingKMeans
 
 
-def spatial_kfold_clusters(gdf:gpd.GeoDataFrame, name:str, nfolds:int, algorithm='kmeans', random_state=None, **kwargs):
+def spatial_kfold_clusters(gdf: gpd.GeoDataFrame, name: str, nfolds: int, algorithm='kmeans', random_state=None, **kwargs):
     """
     Perform spatial clustering using KMeans or BisectingKMeans on a GeoDataFrame with coordinates 
     and assign each geo point to a fold.
@@ -38,6 +38,8 @@ def spatial_kfold_clusters(gdf:gpd.GeoDataFrame, name:str, nfolds:int, algorithm
     if (gdf.crs == None):
         raise AttributeError(
             'The passed GeoDataFrame has no CRS. Use `to_crs()` to reproject one of the input geometries.')
+    if not (isinstance(nfolds, int) and nfolds > 0):
+        raise ValueError('nfolds must be a positive int number.')
     if algorithm not in ['kmeans', 'bisectingkmeans']:
         raise ValueError('Unsupported clustering algorithm. Use "kmeans" or "bisectingkmeans".')
     
