@@ -64,7 +64,7 @@ def spatial_blocks(gdf: gpd.GeoDataFrame, width: Union[int, float], height: Unio
     ----------
     gdf : GeoDataFrame
         The GeoDataFrame containing the points to use for creating the blocks.
-     width : int or float
+    width : int or float
         The width of the grid cells in the x-dimension.
     height : int or float
         The height of the grid cells in the y-dimension.
@@ -85,6 +85,8 @@ def spatial_blocks(gdf: gpd.GeoDataFrame, width: Union[int, float], height: Unio
     GeoDataFrame
         A GeoDataFrame containing the blocks, with a 'folds' column indicating the block number for each polygon. 
     """
+    if not (isinstance(nfolds, int) and nfolds > 0):
+        raise ValueError('nfolds must be a positive int number.')
     if (method != 'random' and method != 'continuous'):
         raise ValueError(f"Invalid method {method}. Specify either 'random' or 'continuous'.")
     elif (orientation != 'tb-lr' and orientation != 'bt-rl'):
