@@ -5,16 +5,16 @@
 
 spatial-kfold: A Python Package for Spatial Resampling Toward More Reliable Cross-Validation in Spatial Studies.
 
-spatial-kfold is a python library for performing spatial resampling to ensure more robust cross-validation in spatial studies. It offers spatial clustering and block resampling technique with user-friendly parameters to customize the resampling. It enables users to conduct a "Leave Region Out" cross-validation, which can be useful for evaluating the model's generalization to new locations as well as improving the reliability of [feature selection](https://doi.org/10.1016/j.ecolmodel.2019.108815) and [hyperparameter tuning](https://doi.org/10.1016/j.ecolmodel.2019.06.002) in spatial studies
+spatial-kfold is a python library for performing spatial resampling to ensure more robust cross-validation in spatial studies. It offers spatial clustering and block resampling technique with user-friendly parameters to customize the resampling. It enables users to conduct a "Leave Region Out" cross-validation, which can be useful for evaluating the model's generalization to new locations as well as improving the reliability of [feature selection](https://doi.org/10.1016/j.ecolmodel.2019.108815) and [hyperparameter tuning](https://doi.org/10.1016/j.ecolmodel.2019.06.002) in spatial studies.
 
 
-Spatial-kfold can be integrated easily with scikit-learn's [LeaveOneGroupOut](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.LeaveOneGroupOut.html) cross-validation technique. This integration enables you to further leverage the resampled spatial data for performing feature selection and hyperparameter tuning.
+spatial-kfold can be integrated easily with scikit-learn's [LeaveOneGroupOut](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.LeaveOneGroupOut.html) cross-validation technique. This integration enables you to further leverage the resampled spatial data for performing feature selection and hyperparameter tuning.
 
 # Main Features
 
 spatial-kfold allow conducting "Leave Region Out" using two spatial resampling techniques:
 
-* 1. Spatial clustering with kmeans
+* 1. Spatial clustering with KMeans or BisectingKMeans
 * 2. Spatial blocks
     * Random blocks
     * Continuous blocks 
@@ -31,7 +31,7 @@ pip install spatial-kfold
 
 # Example 
 
-## 1. Spatial clustering with kmeans [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
+## 1. Spatial clustering with KMeans [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
 
 ```python
 import geopandas as gpd
@@ -51,7 +51,7 @@ ames_prj = ames.copy().to_crs(ames.estimate_utm_crs())
 ames_prj['id'] = range(len(ames_prj))
 
 # 1. Spatial cluster resampling 
-ames_clusters = spatial_kfold_clusters (gdf= ames_prj, name = 'id', nfolds = 10, random_state =569) 
+ames_clusters = spatial_kfold_clusters (gdf=ames_prj, name='id', nfolds=10, algorithm='kmeans', random_state=569) 
 
 # Get the 'tab20' colormap
 cols_tab = cm.get_cmap('tab20', 10)
