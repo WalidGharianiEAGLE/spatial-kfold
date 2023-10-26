@@ -68,7 +68,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="images/clusters_resampling.png" width="400" />
+  <img src="https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/images/clusters_resampling.png?raw=true" width="400" />
 </p>
 
 ## 2. Spatial blocks [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
