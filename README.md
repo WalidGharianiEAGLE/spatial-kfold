@@ -62,7 +62,7 @@ color_ramp = ListedColormap(cols)
 
 
 fig, ax = plt.subplots(1,1 , figsize=(9, 4)) 
-ames_clusters.plot(column='folds', ax=ax, cmap= color_ramp, legend=True)
+ames_clusters.plot(column='folds', ax=ax, cmap= color_ramp, markersize = 2, legend=True)
 ax.set_title('Spatially Clustered Folds')
 plt.show()
 ```
@@ -116,13 +116,13 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="images/blocks_resampling.png" width="700" />
+  <img src="https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/images/blocks_resampling.png?raw=true" width="700" />
 </p>
 
 ## 3. Compare Random and Spatial cross validation [![View Jupyter Notebook](https://img.shields.io/badge/view-Jupyter%20notebook-lightgrey.svg)](https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/notebooks/spatialkfold_intro.ipynb)
 
 <p align="center">
-  <img src="images/randomCV_spatialCV.png" width="800" />
+  <img src="https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/images/randomCV_spatialCV.png?raw=true" width="800" />
 </p>
 
 # Credits
