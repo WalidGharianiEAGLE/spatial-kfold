@@ -63,7 +63,7 @@ color_ramp = ListedColormap(cols)
 
 fig, ax = plt.subplots(1,1 , figsize=(9, 4)) 
 ames_clusters.plot(column='folds', ax=ax, cmap= color_ramp, markersize = 2, legend=True)
-ax.set_title('Spatially Clustered Folds')
+ax.set_title('Spatially Clustered Folds\nUsing KMeans')
 plt.show()
 ```
 
