@@ -51,7 +51,14 @@ ames_prj = ames.copy().to_crs(ames.estimate_utm_crs())
 ames_prj['id'] = range(len(ames_prj))
 
 # 1. Spatial cluster resampling 
-ames_clusters = spatial_kfold_clusters (gdf=ames_prj, name='id', nfolds=10, algorithm='kmeans', random_state=569) 
+ames_clusters = spatial_kfold_clusters (
+  gdf=ames_prj, 
+  name='id', 
+  nfolds=10, 
+  algorithm='kmeans', 
+  n_init="auto", 
+  random_state=569
+  ) 
 
 # Get the 'tab20' colormap
 cols_tab = cm.get_cmap('tab20', 10)
