@@ -144,7 +144,7 @@ group_cvs = LeaveOneGroupOut()
 spatial_folds = ames_clusters.folds.values.ravel()
 
 rfecv = RFECV(estimator=clf, step=1, cv=group_cvs)
-rfecv.fit(X_train, y_train, groups=spatial_folds)
+rfecv.fit(X, y, groups=spatial_folds)
 
 ```
 
@@ -164,7 +164,7 @@ group_cvs = LeaveOneGroupOut()
 spatial_folds = ames_clusters.folds.values.ravel()
 
 grid_search = GridSearchCV(estimator=clf, param_grid=param_grid, cv=group_cvs)
-grid_search.fit(X_train, y_train, groups=spatial_folds)
+grid_search.fit(X, y, groups=spatial_folds)
 ```
 
 # Credits
