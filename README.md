@@ -132,7 +132,7 @@ plt.show()
   <img src="https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/images/randomCV_spatialCV.png?raw=true" width="800" />
 </p>
 
-## 4 .Feature Selection with spatial-kfolds
+## 4 .Feature Selection with spatial-kfold
 
 ```python
 from sklearn.feature_selection import RFECV
@@ -148,7 +148,7 @@ rfecv.fit(X, y, groups=spatial_folds)
 
 ```
 
-## 5. Hyperparameter tuning with spatial-kfolds
+## 5. Hyperparameter tuning with spatial-kfold
 
 ```python
 from sklearn.ensemble import RandomForestRegressor
