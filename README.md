@@ -132,6 +132,41 @@ plt.show()
   <img src="https://github.com/WalidGharianiEAGLE/spatial-kfold/blob/main/images/randomCV_spatialCV.png?raw=true" width="800" />
 </p>
 
+## 4 .Feature Selection with spatial-kfolds
+
+```python
+from sklearn.feature_selection import RFECV
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import LeaveOneGroupOut
+
+clf = RandomForestRegressor()
+group_cvs = LeaveOneGroupOut()
+spatial_folds = ames_clusters.folds.values.ravel()
+
+rfecv = RFECV(estimator=clf, step=1, cv=group_cvs)
+rfecv.fit(X_train, y_train, groups=spatial_folds)
+
+```
+
+## 5. Hyperparameter tuning with spatial-kfolds
+
+```python
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import LeaveOneGroupOut, GridSearchCV
+
+clf = RandomForestRegressor()
+param_grid = {
+    'n_estimators': [50, 100, 150],
+    'max_depth': [None, 10, 20],
+    'min_samples_split': [2, 5],
+}
+group_cvs = LeaveOneGroupOut()
+spatial_folds = ames_clusters.folds.values.ravel()
+
+grid_search = GridSearchCV(estimator=clf, param_grid=param_grid, cv=group_cvs)
+grid_search.fit(X_train, y_train, groups=spatial_folds)
+```
+
 # Credits
 
 This package was inspired by the following R packages:
