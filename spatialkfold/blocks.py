@@ -1,14 +1,19 @@
 from typing import Union
+import math
 
 import numpy as np
 import pandas as pd
 import geopandas as gpd
 from shapely.geometry import box
+from shapely.geometry import Polygon
 
 
 def create_grid(
-    gdf: gpd.GeoDataFrame, width: Union[int, float], height: Union[int, float]
-):
+    gdf: gpd.GeoDataFrame,
+    width: Union[int, float],
+    height: Union[int, float],
+    grid_type="rect",
+) -> gpd.GeoDataFrame:
     """
     Create a grid of polygons with a specified width and height based on the bounds of a provided GeoDataFrame.
 
@@ -20,6 +25,8 @@ def create_grid(
         The width of the grid cells in the x-dimension.
     height : int or float
         The height of the grid cells in the y-dimension.
+    grid_type : str
+        Either 'rect' for rectangular grid or 'hex' for hexagonal grid.
 
     Returns
     -------
@@ -40,21 +47,59 @@ def create_grid(
         raise ValueError("Width must be a positive number")
     if not (isinstance(height, (int, float)) and height > 0):
         raise ValueError("Height must be a positive number")
+    if grid_type in ["rect", "hex"]:
+        raise ValueError(
+            f"Invalid grid_type {grid_type}. Specify either 'rect' or 'hex'."
+        )
 
     # Get the bounds of the points
     xmin, ymin, xmax, ymax = gdf.total_bounds
+    polygons = []
 
-    # Calculate the number of rows and columns in the grid
-    cols = list(np.arange(xmin, xmax + width, width))
-    rows = list(np.arange(ymin, ymax + height, height))
+    if grid_type == "rect":
+        cols = np.arange(xmin, xmax + width, width)
+        rows = np.arange(ymin, ymax + height, height)
+        polygons = [
+            box([(x, y), (x + width, y), (x + width, y + height), (x, y + height)])
+            for x in cols[:-1]
+            for y in rows[:-1]
+        ]
 
-    # Create the grid polygons
-    polygons = [box(x, y, x + width, y + height) for x in cols[:-1] for y in rows[:-1]]
-    # Create a geodataframe with the grid polygons and add crs
-    grid = gpd.GeoDataFrame({"geometry": polygons})
-    grid = grid.set_crs(gdf.crs)
+    elif grid_type == "hex":
+        SQRT3 = np.sqrt(3)
+        K = SQRT3 / 2  # cos(30°)
+        r = width / 2  # center to flat
+        R = r / K  # circumradius (center to corner)
+        dx = 3 / 2 * R  # horizontal distance between centers
+        dy = SQRT3 * R  # vertical distance between rows
 
-    return grid
+        x = xmin
+        col = 0
+        while x < xmax + dx:
+            y_offset = 0 if col % 2 == 0 else dy / 2
+            y = ymin + y_offset
+            while y < ymax + dy:
+                polygons.append(_create_flat_top_hexagon(x, y, R))
+                y += dy
+            x += dx
+            col += 1
+
+    return gpd.GeoDataFrame({"geometry": polygons}, crs=gdf.crs)
+
+
+def _create_flat_top_hexagon(cx: float, cy: float, R: float) -> Polygon:
+    """
+    Create a flat-topped hexagon centered at (cx, cy) with circumradius R.
+    """
+    return Polygon(
+        [
+            (
+                cx + R * math.cos(math.radians(angle)),
+                cy + R * math.sin(math.radians(angle)),
+            )
+            for angle in [0, 60, 120, 180, 240, 300]
+        ]
+    )
 
 
 def spatial_blocks(
@@ -64,6 +109,7 @@ def spatial_blocks(
     nfolds: int,
     method="random",
     orientation="tb-lr",
+    grid_type: str = "rect",
     random_state=None,
 ):
     """
@@ -86,6 +132,8 @@ def spatial_blocks(
     orientation : str, optional
         The orientation of the grid-folds. Can be 'tb-lr' (top-bottom, left-right) and 'bt-rl' (bottom-top, right-left).
         Default is 'tb-lr'.
+    grid_type : str
+        'rect' or 'hex'.
     random_state : int, optional
         An optional integer seed to use when shuffling the grid cells. If provided, this allows the shuffling of the grid
         cells to be reproducible.
@@ -97,17 +145,17 @@ def spatial_blocks(
     """
     if not (isinstance(nfolds, int) and nfolds > 0):
         raise ValueError("nfolds must be a positive int number.")
-    if method != "random" and method != "continuous":
+    if method not in ["random", "continuous"]:
         raise ValueError(
             f"Invalid method {method}. Specify either 'random' or 'continuous'."
         )
-    elif orientation != "tb-lr" and orientation != "bt-rl":
+    elif orientation not in ["tb-lr", "bt-rl"]:
         raise ValueError(
             f"Invalid orientation {orientation}. Specify either 'tb-lr' or 'bt-rl'. By default the orientation is 'tb-lr'."
         )
 
     # Create GeoDataFrame containing the grid of polygons
-    grids = create_grid(gdf, width, height)
+    grids = create_grid(gdf, width, height, grid_type)
 
     in_grids = grids.sjoin(gdf, how="inner").drop_duplicates("geometry")
     # Keep only geometry column
