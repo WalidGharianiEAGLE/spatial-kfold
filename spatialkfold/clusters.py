@@ -44,8 +44,8 @@ def spatial_kfold_clusters(gdf: gpd.GeoDataFrame, name: str, nfolds: int, algori
         raise ValueError('Unsupported clustering algorithm. Use "kmeans" or "bisectingkmeans".')
     
     gdf_copy = gdf.reset_index().copy().drop(columns=['index'])    
-    gdf_copy['lon'] = gdf_copy['geometry'].x
-    gdf_copy['lat'] = gdf_copy['geometry'].y
+    gdf_copy['lon'] = gdf_copy['geometry'].centroid.x
+    gdf_copy['lat'] = gdf_copy['geometry'].centroid.y
     gdf_valid = gdf_copy[[name, 'lon', 'lat']]
     
     # Remove duplicates so we can save time and run the algorithm on the unique spatial points
