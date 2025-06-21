@@ -47,7 +47,7 @@ def create_grid(
         raise ValueError("Width must be a positive number")
     if not (isinstance(height, (int, float)) and height > 0):
         raise ValueError("Height must be a positive number")
-    if grid_type in ["rect", "hex"]:
+    if grid_type not in ["rect", "hex"]:
         raise ValueError(
             f"Invalid grid_type {grid_type}. Specify either 'rect' or 'hex'."
         )
