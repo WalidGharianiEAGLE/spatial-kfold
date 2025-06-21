@@ -66,12 +66,12 @@ def create_grid(
         ]
 
     elif grid_type == "hex":
-        SQRT3 = np.sqrt(3)
-        K = SQRT3 / 2  # cos(30°)
+        sqrt3 = np.sqrt(3)
+        cos = sqrt3 / 2  # cos(30°)
         r = width / 2  # center to flat
-        R = r / K  # circumradius (center to corner)
+        R = r / cos  # circumradius (center to corner)
         dx = 3 / 2 * R  # horizontal distance between centers
-        dy = SQRT3 * R  # vertical distance between rows
+        dy = sqrt3 * R  # vertical distance between rows
 
         x = xmin
         col = 0
