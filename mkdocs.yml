@@ -1,0 +1,61 @@
+site_name: spatial-kfold
+site_url: https://your-username.github.io/spatial-kfold/
+repo_url: https://github.com/WalidGharianiEAGLE/spatial-kfold
+repo_name: WalidGharianiEAGLE/spatial-kfold
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - content.code.copy
+    - content.action.edit
+    - content.tabs.link
+    - content.code.annotation
+    - content.social  
+    - search.suggest
+    - search.highlight
+    - navigation.instant
+    - toc.integrate
+
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+      primary: teal
+      accent: purple 
+    - scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode    
+      primary: teal
+      accent: lime
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.inlinehilite
+  - pymdownx.highlight
+
+plugins:
+  - search
+  - mkdocs-jupyter
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/WalidGharianiEAGLE
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Usage: usage.md  
+  - Notebooks:
+      - Introduction: notebooks/spatialkfold_intro.ipynb
