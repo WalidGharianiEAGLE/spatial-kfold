@@ -45,12 +45,13 @@ def create_grid(
         )
     if not (isinstance(width, (int, float)) and width > 0):
         raise ValueError("Width must be a positive number")
-    if not (isinstance(height, (int, float)) and height > 0):
-        raise ValueError("Height must be a positive number")
     if grid_type not in ["rect", "hex"]:
         raise ValueError(
             f"Invalid grid_type {grid_type}. Specify either 'rect' or 'hex'."
         )
+    if grid_type == "rect":
+        if not (isinstance(height, (int, float)) and height > 0):
+            raise ValueError("Height must be a positive number for 'rect' grid.")
 
     # Get the bounds of the points
     xmin, ymin, xmax, ymax = gdf.total_bounds
@@ -60,9 +61,7 @@ def create_grid(
         cols = np.arange(xmin, xmax + width, width)
         rows = np.arange(ymin, ymax + height, height)
         polygons = [
-            box([(x, y), (x + width, y), (x + width, y + height), (x, y + height)])
-            for x in cols[:-1]
-            for y in rows[:-1]
+            box(x, y, x + width, y + height) for x in cols[:-1] for y in rows[:-1]
         ]
 
     elif grid_type == "hex":
