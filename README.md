@@ -96,7 +96,7 @@ ames_rnd_blocks = spatial_blocks(
   )
 
 # resample the ames data with the prepared blocks 
-ames_res_rnd_blk = gpd.overlay (ames_prj, ames_rnd_blocks)
+ames_res_rnd_blk = gpd.overlay(ames_prj, ames_rnd_blocks)
 
 # plot the resampled blocks
 fig, ax = plt.subplots(1,2 , figsize=(10, 6)) 
