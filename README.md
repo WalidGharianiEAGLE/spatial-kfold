@@ -51,11 +51,11 @@ ames_prj = ames.copy().to_crs(ames.estimate_utm_crs())
 ames_prj['id'] = range(len(ames_prj))
 
 # 1. Spatial cluster resampling 
-ames_clusters = spatial_kfold_clusters (
+ames_clusters = spatial_kfold_clusters(
   gdf=ames_prj, 
   name='id', 
   nfolds=10, 
-  algorithm='kmeans', 
+  algorithm='kmeans', # "bisectingkmeans"
   n_init="auto", 
   random_state=569
   ) 
@@ -85,12 +85,18 @@ plt.show()
 # 2.1 spatial resampled random blocks  
 
 # create 10 random blocks 
-ames_rnd_blocks = spatial_blocks(gdf=ames_prj, width=1500, height=1500, 
-                                 method='random', nfolds=10, 
-                                 random_state=135)
+ames_rnd_blocks = spatial_blocks(
+  gdf=ames_prj, 
+  width=1500, 
+  height=1500, 
+  method="random",     # "continuous"
+  orientation="tb-lr", # "bt-rl"
+  grid_type="rect",    # "hex" 
+  random_state=135
+  )
 
 # resample the ames data with the prepared blocks 
-ames_res_rnd_blk = gpd.overlay (ames_prj, ames_rnd_blocks)
+ames_res_rnd_blk = gpd.overlay(ames_prj, ames_rnd_blocks)
 
 # plot the resampled blocks
 fig, ax = plt.subplots(1,2 , figsize=(10, 6)) 
