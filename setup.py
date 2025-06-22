@@ -9,7 +9,7 @@ with open("requirements.txt") as f:
 
 setup(
     name="spatial-kfold",
-    version="0.0.04",
+    version="0.0.4",
     packages=["spatialkfold"],
     author="Walid Ghariani",
     author_email="walid11ghariani@gmail.com",
