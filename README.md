@@ -15,7 +15,7 @@ spatial-kfold can be integrated easily with scikit-learn's [LeaveOneGroupOut](ht
 spatial-kfold allow conducting "Leave Region Out" using two spatial resampling techniques:
 
 * 1. Spatial clustering with KMeans or BisectingKMeans
-* 2. Spatial blocks
+* 2. Spatial blocks (rect / hex)
     * Random blocks
     * Continuous blocks 
         * tb-lr : top-bottom, left-right
