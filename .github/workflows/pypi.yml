@@ -13,7 +13,9 @@ permissions:
 
 jobs:
   publish:
+    name: Publish package to PyPI
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -37,5 +39,3 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           skip-existing: true
-
-
