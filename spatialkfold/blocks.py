@@ -171,8 +171,8 @@ def spatial_blocks(
         sp_blocks = reversed_blocks
 
     # Split the data into a certain number of blocks
-    split_blocks = np.array_split(sp_blocks, nfolds)
-    blocks_list = [arr.assign(folds=i) for i, arr in enumerate(split_blocks, start=1)]
+    block_indices = np.array_split(sp_blocks.index, nfolds)
+    blocks_list = [sp_blocks.loc[idx].assign(folds=i) for i, idx in enumerate(block_indices, start=1)]
 
     # Set as Create a geodataframe
     blocks_folds_gdf = gpd.GeoDataFrame(pd.concat(blocks_list))
