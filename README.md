@@ -92,6 +92,7 @@ ames_rnd_blocks = spatial_blocks(
   method="random",     # "continuous"
   orientation="tb-lr", # "bt-rl"
   grid_type="rect",    # "hex" 
+  nfolds=10, 
   random_state=135
   )
 
